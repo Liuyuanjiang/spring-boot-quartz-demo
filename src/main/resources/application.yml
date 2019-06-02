@@ -1,0 +1,55 @@
+
+spring:
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        generate_statistics: true
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        jdbc:
+          batch_size: 50
+        order_insert: true
+  datasource:
+    url: jdbc:mysql://192.168.44.226:12345/database
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+  quartz:
+    #相关属性配置
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: clusteredScheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            #driverDelegateClass: org.quartz.impl.jdbcjobstore.oracle.OracleDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+    #数据库方式
+    job-store-type: jdbc
+    #初始化表结构
+    jdbc:
+#      initialize-schema: always
+      initialize-schema: never
+#       org/quartz/impl/jdbcjobstore
+#      schema: classpath:schema/quartz.sql
+
+quartz:
+  jobConfig:
+    testJob:
+      triggerCronExpression: '*/5 * * * * ?'
+      triggerTimezone: Asia/Shanghai
