@@ -1,4 +1,4 @@
-package com.liuyuanjiang.personaldemo;
+package com.liuyuanjiang.springbootquartzdemo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
