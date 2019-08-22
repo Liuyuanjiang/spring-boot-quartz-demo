@@ -18,6 +18,7 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
 
+
   quartz:
     #相关属性配置
     properties:
